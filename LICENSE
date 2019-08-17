@@ -1,0 +1,41 @@
+This version of dump1090 Html Part is licensed under GPL, v2 or later.
+
+Copyright (c) 2019 Martin Burri
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+------------------------------------------------------------------------------
+SQLite Is Public Domain
+
+------------------------------------------------------------------------------
+
+public_html files from flightaware/dump1090 forked from mutability/dump1090
+License: See https://github.com/flightaware/dump1090/blob/master/LICENSE
+
+This version of dump1090 is licensed under the GPL, v2 or later.
+
+Please see the individual source files and the file COPYING
+for full copyright and license details.
+
+If you need to use dump1090 in a way that is incompatible with
+the GPL, please contact Oliver Jowett <oliver@mutability.co.uk>
+to discuss your requirements.
+
+The source code incorporates work that was released under a
+BSD-style license, reproduced below. For unmodified versions
+of the original work that may be used under the terms of that
+license, please see https://github.com/antirez/dump1090 and
+https://github.com/MalcolmRobb/dump1090.
+------------------------------------------------------------------------------
+
+
+
