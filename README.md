@@ -39,6 +39,8 @@ The flights database is only available as sqLite database.
 See doc folder:  SetupGuide.pdf
 
  
+## Changes
+20190823- fix Lat,Lon in panel, disable Test Loop
 
 
 EOD

@@ -268,8 +268,9 @@ Gp_obj.prototype.drawHeader = function(selPlane)
     ctx.textAlign = "right";
     ctx.fillStyle = gpGUI.colPurple;
     if ( selPlane.position != null){
-      ctx.fillText( selPlane.position[0].toFixed(4).toString() + "°" , this.LblW+this.FldW, this.LblH);
-      ctx.fillText( selPlane.position[1].toFixed(4).toString() + "°" , (this.LblW+this.FldW)*2+4, this.LblH);
+      //20190823 fix Lat[1] Lon[0] ..
+      ctx.fillText( selPlane.position[1].toFixed(4).toString() + "°" , this.LblW+this.FldW, this.LblH);
+      ctx.fillText( selPlane.position[0].toFixed(4).toString() + "°" , (this.LblW+this.FldW)*2+4, this.LblH);
     }
     if ( selPlane.sitedist != null ){
       ctx.fillText( (selPlane.sitedist/1852).toFixed(0).toString() + " NM" , (this.LblW+this.FldW)*3+5, this.LblH);

@@ -2,7 +2,7 @@
 
 // DEBUG and DEVELOP
 var CenterValue = 100;
-var GP_DUMMY = true;  // set to false for the real page, else dummy data is used
+var GP_DUMMY = false;  // set to false for the real page, else dummy data is used
 
 var gpGUI = 
 {
