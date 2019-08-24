@@ -499,7 +499,7 @@ function make_geodesic_circle(center, radius, points) {
         var angularDistance = radius / 6378137.0;
         var lon1 = center[0] * Math.PI / 180.0;
         var lat1 = center[1] * Math.PI / 180.0;
-        var geom = new ol.geom.LineString();
+        var geom = new ol.geom.LineString( []); //20190824 init
         for (var i = 0; i <= points; ++i) {
                 var bearing = i * 2 * Math.PI / points;
 
@@ -674,11 +674,12 @@ function initialize_map() {
                                                         function(feature, layer) {
                                                                 return feature.hex;
                                                         },
-                                                        null,
+                                                        //null, //20190824 - OL 5
                                                         function(layer) {
                                                                 return (layer === iconsLayer);
-                                                        },
-                                                        null);
+                                                        }
+                                                        //null
+                                                        );
                 if (hex) {
                         selectPlaneByHex(hex, (evt.type === 'dblclick'));
                         adjustSelectedInfoBlockPosition();
@@ -696,11 +697,11 @@ function initialize_map() {
             function(feature, layer) {
                     return feature.hex;
             },
-            null,
+            //null, //20190824 - OL 5
             function(layer) {
                     return (layer === iconsLayer);
-            },
-            null
+            }
+            //null
         );
 
         if (hex) {

@@ -498,8 +498,9 @@ PlaneObject.prototype.updateData = function(receiver_timestamp, data) {
                 this.last_position_time = receiver_timestamp - data.seen_pos;
 
                 if (SitePosition !== null) {
-                        var WGS84 = new ol.Sphere(6378137);
-                        this.sitedist = WGS84.haversineDistance(SitePosition, this.position);
+                        //var WGS84 = new ol.Sphere(6378137);
+                        //this.sitedist = WGS84.haversineDistance(SitePosition, this.position);
+                        this.sitedist = ol.sphere.getDistance(SitePosition, this.position, 6378137); //20190824 OL5.x update
                 }
 
                 this.position_from_mlat = false;
