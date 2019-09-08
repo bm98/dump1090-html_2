@@ -42,12 +42,14 @@ The flights database is only available as sqLite database.
 
 ### How to use
 
-See doc folder:  SetupGuide.pdf
-Note: best is to clean the current html_2 folder completely and copy everything from scratch.
+
+[See doc folder:  SetupGuide.pdf](doc/SetupGuide.pdf)
+ 
+<br>Note: best is to clean the current html_2 folder completely and copy everything from scratch.
  
 ## Changes
-20190823- fix Lat,Lon in panel, disable Test Loop
-20190908- added 1st version of a 3d panel 
+<br>20190823- fix Lat,Lon in panel, disable Test Loop
+<br>20190908- added 1st version of a 3d panel 
 
 
 EOD
