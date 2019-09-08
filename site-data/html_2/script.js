@@ -346,7 +346,7 @@ function initialize() {
       // BM EXTENSION HOOK - INSTRUMENT PANEL
         // init gp stuff
         layer_obj.addHooks();
-        gp_init();
+        gp_init( 'GlasPanel' ); // submit the Canvas Name here
       // END EXTENSION INSTRUMENT PANEL
         
         // Force map to redraw if sidebar container is resized - use a timer to debounce
@@ -379,6 +379,9 @@ function initialize() {
                         Dump1090Version = data.version;
                         RefreshInterval = data.refresh;
                         PositionHistorySize = data.history;
+                        // BM EXTENSION HOOK - INSTRUMENT PANEL
+                        fd3d_init( 'Fd3dPanel', [SiteLon, SiteLat] ); // submit the Div Name and our location here
+                      // END EXTENSION INSTRUMENT PANEL
                 })
 
                 .always(function() {

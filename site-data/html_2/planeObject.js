@@ -175,7 +175,8 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                                tail_update: this.last_position_time,
                                estimated: false,
                                ground: (this.altitude === "ground"),
-                               altitude: this.altitude
+                               altitude: this.altitude,
+                               position: this.position //BM EXTENSION - added
                              };
                 this.track_linesegs.push(newseg);
                 this.history_size ++;
@@ -198,6 +199,7 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                                                    feature: null,
                                                    head_update: this.last_position_time,
                                                    altitude: 0,
+                                                   position: this.prev_position, //BM EXTENSION - added
                                                    estimated: true });
                         this.history_size += 2;
                 } else {
@@ -219,7 +221,9 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                             tail_update: this.last_position_time,
                             estimated: false,
                             ground: (this.altitude === "ground"),
-                            altitude: this.altitude };
+                            altitude: this.altitude,
+                            position: this.position //BM EXTENSION - added
+                         };
                 this.track_linesegs.push(lastseg);
                 this.history_size ++;
                 // continue
@@ -239,6 +243,7 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                                            tail_update: this.last_position_time,
                                            estimated: false,
                                            altitude: this.altitude,
+                                           position: this.position, //BM EXTENSION - added
                                            ground: (this.altitude === "ground") });
                 this.history_size += 3;
                 return true;

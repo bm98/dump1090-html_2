@@ -95,6 +95,8 @@ function Gp_obj()
   this.Canvas = null;
   this.FlagLoaded = false;
   this.FlagImg = null;
+
+  this.CanvasName = ''; // the DOM element to draw on
 }
 
 // INSTANCEs
@@ -135,9 +137,14 @@ Gp_obj.prototype.RefreshSelectedGpHook = function(selected)
         return;
     }    
 
+    // this is our update of either the panel or the 3d display
     $('#dump1090_infoblock').css('display','none');
     if ( layer_obj.showSelectedAsSheet() === false ) {
-        gp_update("GlasPanel", selected); // name as in HTML... bad but then..
+      if ( layer_obj.showSelectedAs3D() === true ){
+        fd3d_update( selected );
+      } else {
+        gp_update( selected );
+      }
     }
 
     if (selected.flight !== null && selected.flight !== "") {
@@ -152,16 +159,21 @@ Gp_obj.prototype.RefreshSelectedGpHook = function(selected)
     }
 }
 
-// This is a hook to handle the visibility of the Glass Panel
+// This is a hook to handle the visibility of the Glass Panel/3D Panel
 Gp_obj.prototype.setSelectedInfoBlockVisibilityGpHook = function(planeSelected, mapIsVisible)
 {
-    $('#selected_gpanel').hide();
-    $('#selected_infoblock').hide();
+  $('#selected_gpanel').hide();
+  $('#selected_3dpanel').hide();
+  $('#selected_infoblock').hide();
     if (planeSelected && mapIsVisible) {
       if ( layer_obj.showSelectedAsSheet() === true ) {
           $('#selected_infoblock').show(); 
       } else {
+        if ( layer_obj.showSelectedAs3D() === true ){
+          $('#selected_3dpanel').show();
+        } else {
           $('#selected_gpanel').show();
+        }
       }
     }
 }    
@@ -463,8 +475,10 @@ Gp_obj.prototype.drawUtc = function()
 // GLOBAL 
 
 // all initialization
-function gp_init()
+function gp_init( canvasName )
 {
+  gp_obj.CanvasName = canvasName; // save for later
+
   // create our 1000x1000 canvas for hidden drawing
   gp_obj.Canvas = document.createElement('canvas');
   gp_obj.Canvas.id = "GPanel";
@@ -473,10 +487,17 @@ function gp_init()
   gp_obj.Canvas.style.zIndex = 8;
   gp_obj.Canvas.style.position = "absolute";
   gp_obj.Canvas.style.border = "0px solid";
+
+  /*
+  var dstCanvas = document.getElementById(canvasName);
+  // Canvas does not work without style setting - may be need to update this on resize ??
+  dstCanvas.style.width = dstCanvas.parentElement.clientWidth.toString()+"px";
+  dstCanvas.style.height = dstCanvas.parentElement.clientHeight.toString()+"px";
+*/
 }
 
 // Update all of the Glas Planel (selPlane is planeObject Type)
-function gp_update(canvasName, selPlane)
+function gp_update( selPlane )
 {
   if (typeof selPlane === 'undefined') {
     return;
@@ -490,7 +511,7 @@ function gp_update(canvasName, selPlane)
       selPlane.getFlightPlanData(); // update via PHP
     }
   }
-  
+    
   //our drawing canvas
   var ctx = gp_obj.Canvas.getContext("2d");
   // clear area
@@ -524,12 +545,14 @@ function gp_update(canvasName, selPlane)
 
   // finally - paint it streched / reduced onto the HTML canvas
   // external canvas to draw to 
-  var dstCanvas = document.getElementById(canvasName);
+  var dstCanvas = document.getElementById(gp_obj.CanvasName);
   var destCtx = dstCanvas.getContext("2d");
   destCtx.clearRect(0, 0, dstCanvas.width, dstCanvas.height);
   destCtx.drawImage(gp_obj.Canvas, 0, 0, gp_obj.Canvas.width, gp_obj.Canvas.height, 
                   0, 0, dstCanvas.width, dstCanvas.width); // square image where width is the master
   
+  // if in test env we may want to update the sim 'selectedPlane' with cycling values 
+  // Set GP_DUMMY = false in gp-tools.js
   if ( GP_DUMMY ) {
     gp_dummy.update();
   }

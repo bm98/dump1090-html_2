@@ -3,29 +3,21 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" type="text/css" href="style.css?v=2" />
-    <!-- jquery - OLD
-    <link rel="stylesheet" href="jquery/jquery-ui-1.11.4-smoothness.css" />
-    <script src="jquery/jquery-3.0.0.min.js"></script>
-    <script src="jquery/jquery-ui-1.11.4.min.js"></script>
-    <script src="jquery/plugins/jquery.validate.min.js"></script>
-	-->
-    <!-- jquery - Latest -->
+
+	<!-- jquery - Latest -->
     <link rel="stylesheet" href="jquery/jquery-ui-1.12.1-smoothness.css" />
     <script src="jquery/jquery-3.4.1.min.js"></script>
     <script src="jquery/jquery-ui-1.12.1.min.js"></script>
     <script src="jquery/plugins/jquery.validate-1.19.1.min.js"></script>
- 
-    <!-- OL - OLD
-    <link rel="stylesheet" href="ol/ol-4.4.2.css" type="text/css" />
-    <script src="ol/ol-4.4.2.js" type="text/javascript"></script>
-	-->
-    <!-- OL - Latest -->
+
+	<!-- OL - Latest -->
 	<link rel="stylesheet" href="ol/v5.3.0-dist/ol.css" type="text/css" />
     <script src="ol/v5.3.0-dist/ol.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="ol/ol3-layerswitcher.css" type="text/css"/>
     <script src="ol/ol3-layerswitcher.js" type="text/javascript"></script>
 
+	<!-- FA - 3.7.1 -->
     <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="markers.js"></script>
     <script type="text/javascript" src="dbloader.js"></script>
@@ -35,7 +27,30 @@
     <script type="text/javascript" src="flags.js"></script>
     <script type="text/javascript" src="layers.js"></script>
     <script type="text/javascript" src="script.js?v=2"></script>
-    <!-- GlassPanel additions -->
+
+	<!-- BM EXTENSION - add our stuff -->
+
+	<!-- 3DPanel additions -->	
+	<script src="three/three.min.js" type="text/javascript"></script>	
+    <script src="three/CSS2DRenderer.js" type="text/javascript"></script>
+    <script src="three/Detector.js" type="text/javascript"></script>
+    <script src="three/Lut.js" type="text/javascript"></script>
+    <script src="three/LutMaterial.js" type="text/javascript"></script>
+    <script src="three/Stats.js" type="text/javascript"></script>
+    <script src="three/OrbitControls.js" type="text/javascript"></script>
+    <script src="three/THREEx.KeyboardState.js" type="text/javascript"></script>
+    <script src="three/THREEx.FullScreen.js"> type="text/javascript"</script>
+	<script src="three/THREEx.WindowResize.js" type="text/javascript"></script>
+
+	<script src="geodesy/dms.js" type="text/javascript"></script>
+	<script src="geodesy/vector3d.js" type="text/javascript"></script>
+	<script src="geodesy/latlon-ellipsoidal.js" type="text/javascript"></script>
+	<script src="geodesy/latlon-nvector-ellipsoidal.js" type="text/javascript"></script>
+
+	<script src="3d-geoGridHelper.js" type="text/javascript"></script>
+	<script src="3d-base.js" type="text/javascript"></script>
+	
+	<!-- GlassPanel additions -->	
     <script src="gp-vertspeed.js" type="text/javascript"></script>
     <script src="gp-altitude.js" type="text/javascript"></script>
     <script src="gp-attitude.js" type="text/javascript"></script>
@@ -49,7 +64,9 @@
     <script src="gp-tools.js" type="text/javascript"></script>
     <script src="gp-base.js" type="text/javascript"></script>
 
-    <title>PiAware Skyview</title>
+	<!-- End BM EXTENSION - add our stuff -->
+
+	<title>PiAware Skyview - Mod bm98adbs</title>
 </head>
 
 <body onload="initialize()">
@@ -229,6 +246,10 @@
         <div class="settingsCheckbox" id="gp_selected_sheet_checkbox"></div>
         <div class="settingsText">Show selected Data as Sheet</div>
       </div>
+      <div class="settingsOptionContainer">
+        <div class="settingsCheckbox" id="gp_selected_3d_checkbox"></div>
+        <div class="settingsText">Show 3d model instead of Glas Panel</div>
+      </div>
     </div>
   </div>
   <!-- END BM EXTENSION - add a separate Settings block to not interfere with FA more than needed -->
@@ -279,9 +300,13 @@
       
       <!-- BM EXTENSION - Added Glass Panel -->
       <div id="selected_gpanel" class="hidden">
-        <canvas id="GlasPanel" width="750" height="750"
-            style="border:1px solid #d3d3d3; "> Your browser does not support the canvas element. 
+		<canvas id="GlasPanel" width="750" height="750" style="border:1px solid #d3d3d3; "> 
+			Your browser does not support the canvas element. 
         </canvas>
+      </div>
+      <div id="selected_3dpanel" class="hidden">
+		<div id="Fd3dPanel" height="100%" style="border:1px solid #d3d3d3; ">
+		</div>
       </div>
       <!-- END BM EXTENSION - Added Glass Panel -->
       

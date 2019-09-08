@@ -15,6 +15,7 @@ function Layer_obj()
   this.awyHiLayer = null;
 
   this._showSelectedAsSheet = false;
+  this._showSelectedAs3D = false;
   this._showLayerNavNdb = false;
   this._showLayerNavVor = false;
   this._showLayerAptMidLarge = false;
@@ -187,6 +188,7 @@ Layer_obj.prototype.init = function(layers)
   // trigger on load
   var self = this;
   self.toggleSheetDisplay(false, self);
+  self.toggle3DDisplay(false, self);
   self.toggleLayerNavVor(false, self);
   self.toggleLayerNavNdb(false, self);
   self.toggleLayerAptMidLarge(false, self);
@@ -201,6 +203,11 @@ Layer_obj.prototype.addHooks = function() {
   var self = this;
   $('#gp_selected_sheet_checkbox').on('click', function() {
     self.toggleSheetDisplay(true, self);
+    refreshSelected();
+  });
+
+  $('#gp_selected_3d_checkbox').on('click', function() {
+    self.toggle3DDisplay(true, self);
     refreshSelected();
   });
 
@@ -240,6 +247,14 @@ Layer_obj.prototype.addHooks = function() {
     $('#gp_settings_infoblock').hide();
   });
   
+  // to make the infoblock responsive 
+  $('#sidebar_container').on('resize', function() {
+    if ( layer_obj._showSelectedAsSheet === false && layer_obj._showSelectedAs3D === true){
+      $('#Fd3dPanel').css('height', $('#sidebar_container').width());
+      // notify the renderer of the size change
+      fd3d_obj.resize( );
+    }
+  });
   
 }
 
@@ -247,6 +262,11 @@ Layer_obj.prototype.addHooks = function() {
 Layer_obj.prototype.showSelectedAsSheet = function()
 {
   return this._showSelectedAsSheet;
+}
+
+Layer_obj.prototype.showSelectedAs3D = function()
+{
+  return this._showSelectedAs3D;
 }
 
 // Handlers
@@ -265,6 +285,23 @@ Layer_obj.prototype.toggleSheetDisplay = function(switchFilter, context) {
   }
   localStorage['gp_sheetDisplaySelector'] = sheetDisplay;
   context._showSelectedAsSheet = (sheetDisplay === 'shown');
+}
+
+Layer_obj.prototype.toggle3DDisplay = function(switchFilter, context) {
+  if (typeof localStorage['gp_3DDisplaySelector'] === 'undefined') {
+    localStorage['gp_3DDisplaySelector'] = 'not_shown';
+  }
+  var _3DDisplay = localStorage['gp_3DDisplaySelector'];
+  if (switchFilter === true) {
+    _3DDisplay = (_3DDisplay === 'not_shown') ? 'shown' : 'not_shown';
+  }
+  if (_3DDisplay === 'shown') {
+    $('#gp_selected_3d_checkbox').addClass('settingsCheckboxChecked');
+  } else {
+    $('#gp_selected_3d_checkbox').removeClass('settingsCheckboxChecked');
+  }
+  localStorage['gp_3DDisplaySelector'] = _3DDisplay;
+  context._showSelectedAs3D = (_3DDisplay === 'shown');
 }
 
 Layer_obj.prototype.toggleLayerNavVor = function(switchFilter, context) {

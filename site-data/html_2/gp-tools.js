@@ -2,7 +2,7 @@
 
 // DEBUG and DEVELOP
 var CenterValue = 100;
-var GP_DUMMY = false;  // set to false for the real page, else dummy data is used
+var GP_DUMMY = true;  // set to false for the real page, else dummy data is used
 
 var gpGUI = 
 {
@@ -82,8 +82,8 @@ function Gp_dummy() {
   this.dummyPlane.registration = "unknown";
   this.dummyPlane.squawk = 7000;
   this.dummyPlane.selected = true;		
-  this.dummyPlane.altitude = 19000;
-  this.dummyPlane.alt_baro = 19900;
+  this.dummyPlane.altitude = 1900;
+  this.dummyPlane.alt_baro = 1990;
   this.dummyPlane.alt_geom = 9990;
   this.dummyPlane.speed = 123;
   this.dummyPlane.gs = 125;
@@ -101,7 +101,7 @@ function Gp_dummy() {
   this.dummyPlane.baro_rate = -1000;
   this.dummyPlane.geom_rate = -1020;
   this.dummyPlane.vert_rate = +1950;
-  this.dummyPlane.position = [47.123456, 8.9876543];
+  this.dummyPlane.position = [8.9876543, 47.123456];
   this.dummyPlane.sitedist = 23.456789;
   this.dummyPlane.messages = 222;
   this.dummyPlane.rssi = -24.5;
@@ -120,7 +120,7 @@ Gp_dummy.prototype.selected = function()
 Gp_dummy.prototype.update = function() 
 {
   this.dummyPlane.flight = "AEA1518";
-  this.dummyPlane.alt_baro+=10;
+  this.dummyPlane.alt_baro+=500;
   this.dummyPlane.altitude=this.dummyPlane.alt_baro; // use baro
   this.dummyPlane.alt_geom++;
   this.dummyPlane.speed++;
@@ -142,6 +142,8 @@ Gp_dummy.prototype.update = function()
   this.dummyPlane.messages++;
   this.dummyPlane.rssi++;
   this.dummyPlane.seen += 0.1;
+
+  this.dummyPlane.position = [this.dummyPlane.position[0]+0.1, this.dummyPlane.position[1]+0.05];
 };
 
 var gp_dummy = new Gp_dummy();

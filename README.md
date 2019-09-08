@@ -10,6 +10,10 @@ customized for use in parallel to the original SkyView package.
 Instrument Panel for the selected aircraft, switch between panel and sheet view.
 javascript draws on HTML5 Canvas.
 
+### 3D View added
+A 3D view of selected aircrafts was added. Switch between panel / 3D view and sheet view.
+javascript draws with Three.js .
+
 ### geo layers added
 Markers for airports and navaids, airways hi/lo and fixes
 
@@ -37,10 +41,11 @@ The flights database is only available as sqLite database.
 ### How to use
 
 See doc folder:  SetupGuide.pdf
-
+Note: best is to clean the current html_2 folder completely and copy everything from scratch.
  
 ## Changes
 20190823- fix Lat,Lon in panel, disable Test Loop
+20190908- added 1st version of a 3d panel 
 
 
 EOD
