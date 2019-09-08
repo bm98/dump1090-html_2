@@ -28,13 +28,14 @@ The flights database is only available as sqLite database.
 
 ### Screenshot and Video of the Instrument Panel
 
-[Using the dump1090-fa with instrument panel (Youtube](https://www.youtube.com/watch?v=mQ3SeIqvK6E)
-[![dump1090 instrument panel](https://github.com/bm98/dump1090-html_2/blob/master/doc/screen-ipanel.jpg)](https://www.youtube.com/watch?v=mQ3SeIqvK6E)
+[Using the dump1090-fa with instrument panel (Youtube link)](https://www.youtube.com/watch?v=mQ3SeIqvK6E)
 
+
+[![Panel view ](doc/screen-3dpanel.jpg)](doc/screen-ipanel.jpg)
 
 [![3D view ](doc/screen-3dpanel.jpg)](doc/screen-3dpanel.jpg)
 
-[Change between Panel and Sheet](https://raw.githubusercontent.com/bm98/dump1090/master/img/dump1090-fa-Mod2.png)
+[Change between Panel and Sheet](doc/screen-changeView.jpg)
 
 [Sheet view](https://raw.githubusercontent.com/bm98/dump1090/master/img/dump1090-fa-Mod3.png)
 
