@@ -31,7 +31,7 @@ The flights database is only available as sqLite database.
 [Using the dump1090-fa with instrument panel (Youtube link)](https://www.youtube.com/watch?v=mQ3SeIqvK6E)
 
 
-[![Panel view ](doc/screen-3dpanel.jpg)](doc/screen-ipanel.jpg)
+[![Panel view ](doc/screen-ipanel.jpg)](doc/screen-ipanel.jpg)
 
 [![3D view ](doc/screen-3dpanel.jpg)](doc/screen-3dpanel.jpg)
 
